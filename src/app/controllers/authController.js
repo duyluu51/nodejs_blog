@@ -1,8 +1,12 @@
 const bcrypt = require("bcrypt");
 const userModel = require("../models/usersModels");
 const authMethod = require("../method/authMethods");
+const jwtVariable=require("../../constant").jwtVariable
 const randToken = require("rand-token");
+
+// Khai báo const
 const SALT_ROUNDS = 10;
+// end
 
 class authController {
   // [post] register
@@ -18,7 +22,6 @@ class authController {
         password: hashPassword,
         // ... Thêm các tham số khác tại đây ...
       };
-      console.log(newUser);
 
       // save data
       try {
@@ -45,6 +48,7 @@ class authController {
       return res.status(401).send("Tên đăng nhập không tồn tại.");
     }
     const user = userList[0];
+    console.log(user);
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
@@ -62,6 +66,7 @@ class authController {
       accessTokenSecret,
       accessTokenLife
     );
+
     if (!accessToken) {
       return res
         .status(401)
@@ -69,9 +74,10 @@ class authController {
     }
 
     let refreshToken = randToken.generate(jwtVariable.refreshTokenSize); // tạo 1 refresh token ngẫu nhiên
+
     if (!user.refreshToken) {
       // Nếu user này chưa có refresh token thì lưu refresh token đó vào database
-      await userModel.updateRefreshToken(user.username, refreshToken);
+      await userModel.updateOne({ username:user.username}, {...user,refreshToken });
     } else {
       // Nếu user này đã có refresh token thì lấy refresh token đó từ database
       refreshToken = user.refreshToken;

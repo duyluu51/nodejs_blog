@@ -5,6 +5,10 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
+const dotenv = require('dotenv');
+
+// config dotenv to read process.env
+dotenv.config();
 
 // Rounter
 const route = require("./routes");
