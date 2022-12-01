@@ -74,10 +74,10 @@ class authController {
     }
 
     let refreshToken = randToken.generate(jwtVariable.refreshTokenSize); // tạo 1 refresh token ngẫu nhiên
-
+    
     if (!user.refreshToken) {
       // Nếu user này chưa có refresh token thì lưu refresh token đó vào database
-      await userModel.updateOne({ username:user.username}, {...user,refreshToken });
+      await userModel.updateOne({ _id:user._id}, {username,password,refreshToken });
     } else {
       // Nếu user này đã có refresh token thì lấy refresh token đó từ database
       refreshToken = user.refreshToken;
