@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
+const bodyParser = require("body-parser");
 
 // Rounter
 const route = require("./routes");
@@ -33,6 +34,15 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(methodOverride("_method"));
 app.use(express.json());
+
+// config body parse
+//1. for parsing application/json
+app.use(bodyParser.json());
+
+//2. for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// end config body parse
 
 app.get("/", (req, res) => {
   res.json({ sayHi: "Testing hello from server, nice to meet you!" });
