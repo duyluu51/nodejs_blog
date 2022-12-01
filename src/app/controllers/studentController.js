@@ -14,7 +14,6 @@ class StudentController {
 
   // [post] /create
   create(req, res, next) {
-    console.log(req.body);
     const student = new StudentList(req.body);
     student
       .save()
