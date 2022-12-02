@@ -58,7 +58,7 @@ class authController {
     const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
 
     const dataForAccessToken = {
-      username: user._id,
+      userId: user._id,
     };
     const accessToken = await authMethod.generateToken(
       dataForAccessToken,
@@ -118,12 +118,14 @@ class authController {
       return res.status(400).send("Access token không hợp lệ.");
     }
 
-    const username = decoded.payload.username; // Lấy username từ payload
+    const userId = decoded.payload.userId; // Lấy username từ payload
 
-    const user = await userModel.getUser(username);
-    if (!user) {
+    const userList = await userModel.find({ _id: userId });
+
+    if (userList.length === 0) {
       return res.status(401).send("User không tồn tại.");
     }
+    const user = userList[0];
 
     if (refreshTokenFromBody !== user.refreshToken) {
       return res.status(400).send("Refresh token không hợp lệ.");
@@ -131,7 +133,7 @@ class authController {
 
     // Tạo access token mới
     const dataForAccessToken = {
-      username,
+      userId,
     };
 
     const accessToken = await authMethod.generateToken(
