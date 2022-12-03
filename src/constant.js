@@ -2,7 +2,7 @@
 const constants={
     jwtVariable:{
         accessTokenSecret: "access-token-secret-example",
-        accessTokenLife: "10m",
+        accessTokenLife: "720h",
         refreshTokenSize: 100,
     }
 }

@@ -86,7 +86,9 @@ class authController {
       msg: "Đăng nhập thành công.",
       accessToken,
       refreshToken,
-      user,
+      userInfo:{
+        username:user.username
+      },
     });
   };
 

@@ -4,7 +4,7 @@ const StudentList = require("../models/StudentModel");
 
 class StudentController {
   // [GET] /all
-  getAll(req, res, next) {
+  getStudent(req, res, next) {
     StudentList.find({})
       .then((studentItem) => {
         res.json({ studentItem });
