@@ -3,7 +3,7 @@ const StudentList = require("../models/StudentModel");
 // const {mongooseToObject} = require('../../util/mongoose')
 
 class StudentController {
-  // [GET] /getStudent
+  // 1. [GET] /getStudent
   getStudent(req, res, next) {
     // handle param
     let modelParam={
@@ -28,7 +28,7 @@ class StudentController {
       .catch(next);
   }
 
-  // [GET] /getStudentDelete
+  // 2. [GET] /getStudentDelete
   getStudentDelete(req, res,next) {
     // handle param
     let modelParam={
@@ -53,7 +53,7 @@ class StudentController {
         .catch(next)
 }
 
-  // [post] /create
+  // 3. [post] /create
   async create(req, res, next) {
     try {
       // count all total record
@@ -79,7 +79,7 @@ class StudentController {
     }
   }
 
-   // [put] /update
+   // 4. [put] /update
    async update(req, res, next) {
     try {
       // Check model student
@@ -103,7 +103,8 @@ class StudentController {
       res.status(400).send("Bad Request");
     }
   }
-  // [Delete] /delete
+  
+  // 5. [Delete] /delete
   async delete(req, res, next) {
     try {
       await StudentList.delete({_id:req.params.id})

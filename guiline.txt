@@ -62,4 +62,27 @@ II. Student (/student/...)
             school
             phoneNumber
         }
+    5. delete: /student/delete/:id:
+        headers {
+                    x_authorization:accessToken(string),
+                }
+
+III. Course (/course/...)
+    1. Get: /course/getCourse:
+        headers {
+                    x_authorization:accessToken(string),
+                }
+        query {
+            shiftCode
+            nameShift
+            year
+        }
+    2. Post: /course/create:
+            headers {
+                        x_authorization:accessToken(string),
+                    }
+            Body {
+                nameShift
+                year
+            }
        
