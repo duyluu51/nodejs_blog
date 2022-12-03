@@ -85,4 +85,69 @@ III. Course (/course/...)
                 nameShift
                 year
             }
-       
+
+IV Payment (/payment/...)
+    1. Get: /payment/getPayment:
+        headers {
+                    x_authorization:accessToken(string),
+                }
+        query {
+            idStudent
+            shift
+        }
+    2. Put: /payment/updatePayment/:idStudent:
+        headers {
+                    x_authorization:accessToken(string),
+                }
+        body {
+        shift
+        note
+        jan: {
+              cashAmount
+              note
+            }
+        feb:{
+              cashAmount
+              note
+            },
+        mar:{
+              cashAmount
+              note
+            },
+        apr: {
+              cashAmount
+              note
+            },
+        may: {
+              cashAmount
+              note
+            },
+        jun: {
+              cashAmount
+              note
+            },
+        jul: {
+              cashAmount
+              note
+            },
+        aug:{
+              cashAmount
+              note
+            },
+        sep: {
+              cashAmount
+              note
+            },
+        oct: {
+              cashAmount
+              note
+            },
+        nov: {
+              cashAmount
+              note
+            },
+        dec: {
+              cashAmount
+              note
+            },
+      };
