@@ -12,12 +12,10 @@ exports.isAuth = async (req, res, next) => {
   }
   const accessTokenSecret =
     process.env.ACCESS_TOKEN_SECRET || jwtVariable.accessTokenSecret;
-  console.log(accessTokenSecret);
   const verified = await authMethod.verifyToken(
     accessTokenFromHeader,
     accessTokenSecret
   );
-  console.log(verified);
   if (!verified) {
     return res
       .status(401)

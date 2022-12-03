@@ -24,8 +24,30 @@ II. Student (/student/...)
                     x_authorization:accessToken(string),
                 }
         Body {
-            username:string,
-            password:string
+            name
+            class
+            school
+            phoneNumber
+            shift
+            year
         }
     2. Post: /student/create:
+        Body {
+            name
+            class
+            school
+            phoneNumber
+            shift
+            year
+        }
+    3. Put: /student/update/:id:
+        headers {
+                    x_authorization:accessToken(string),
+                }
+        Body {
+            name
+            class
+            school
+            phoneNumber
+        }
        

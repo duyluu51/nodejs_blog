@@ -6,5 +6,6 @@ const isAuth =require('../app/middlewares/authMiddlewares').isAuth
 
 router.get("/getStudent",isAuth, studentController.getStudent);
 router.post("/create", studentController.create);
+router.put("/update/:id",isAuth, studentController.update);
 
 module.exports = router;
