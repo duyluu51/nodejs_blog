@@ -5,6 +5,7 @@ const sign = promisify(jwt.sign).bind(jwt);
 const verify = promisify(jwt.verify).bind(jwt);
 
 class authMethod {
+  // 1. Method generateToken
   generateToken = async (payload, secretSignature, tokenLife) => {
     try {
       return await sign(
@@ -19,6 +20,26 @@ class authMethod {
       );
     } catch (error) {
       console.log(`Error in generate access token:  + ${error}`);
+      return null;
+    }
+  };
+  // 2. Method verifyToken
+  verifyToken = async (token, secretKey) => {
+    try {
+      return await verify(token, secretKey);
+    } catch (error) {
+      console.log(`Error in verify access token:  + ${error}`);
+      return null;
+    }
+  };
+  // 3. Method decodeToken
+  decodeToken = async (token, secretKey) => {
+    try {
+      return await verify(token, secretKey, {
+        ignoreExpiration: true,
+      });
+    } catch (error) {
+      console.log(`Error in decode access token: ${error}`);
       return null;
     }
   };
