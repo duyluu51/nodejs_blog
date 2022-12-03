@@ -23,6 +23,27 @@ II. Student (/student/...)
         headers {
                     x_authorization:accessToken(string),
                 }
+        query {
+            name
+            class
+            school
+            phoneNumber
+            shift
+            year
+        }
+    2. Get: /student/getStudentDelete:
+            headers {
+                        x_authorization:accessToken(string),
+                    }
+            query {
+                name
+                class
+                school
+                phoneNumber
+                shift
+                year
+            }
+    3. Post: /student/create:
         Body {
             name
             class
@@ -31,16 +52,7 @@ II. Student (/student/...)
             shift
             year
         }
-    2. Post: /student/create:
-        Body {
-            name
-            class
-            school
-            phoneNumber
-            shift
-            year
-        }
-    3. Put: /student/update/:id:
+    4. Put: /student/update/:id:
         headers {
                     x_authorization:accessToken(string),
                 }

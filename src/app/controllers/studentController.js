@@ -13,14 +13,13 @@ class StudentController {
       phoneNumber:req.query?.phoneNumber?new RegExp(req.query?.phoneNumber, 'i'):null,
       shift:req.query?.shift||null,
       year:req.query?.year||null,
-      idStudent:req.query?.idStudent||null
+      idStudent:req.query?.idStudent||null,
     }
     for (var key in modelParam) {
       if (!modelParam[key]) {
         delete modelParam[key];
       }
     }
-    console.log(modelParam);
   // End handle param
     StudentList.find(modelParam)
       .then((studentItem) => {
@@ -28,6 +27,31 @@ class StudentController {
       })
       .catch(next);
   }
+
+  // [GET] /getStudentDelete
+  getStudentDelete(req, res,next) {
+    // handle param
+    let modelParam={
+      name:req.query?.name?new RegExp(req.query?.name, 'i'):null,
+      class:req.query?.class?new RegExp(req.query?.class, 'i'):null,
+      school:req.query?.school?new RegExp(req.query?.school, 'i'):null,
+      phoneNumber:req.query?.phoneNumber?new RegExp(req.query?.phoneNumber, 'i'):null,
+      shift:req.query?.shift||null,
+      year:req.query?.year||null,
+      idStudent:req.query?.idStudent||null,
+    }
+    for (var key in modelParam) {
+      if (!modelParam[key]) {
+        delete modelParam[key];
+      }
+    }
+  // End handle param
+      StudentList.findDeleted({modelParam})
+        .then((studentItem) => {
+          res.json({ studentItem:studentItem.filter(item=>item.deleted) });
+        })
+        .catch(next)
+}
 
   // [post] /create
   async create(req, res, next) {
@@ -73,8 +97,17 @@ class StudentController {
       }
       // save new data
         await StudentList.findOneAndUpdate({_id:req.params.id}, updateStudentModel)
-          console.log("Save data success");
-          res.json("OK");
+          res.json("Update OK");
+    }
+    catch (error){
+      res.status(400).send("Bad Request");
+    }
+  }
+  // [Delete] /delete
+  async delete(req, res, next) {
+    try {
+      await StudentList.delete({_id:req.params.id})
+      res.json("Delete OK")
     }
     catch (error){
       res.status(400).send("Bad Request");

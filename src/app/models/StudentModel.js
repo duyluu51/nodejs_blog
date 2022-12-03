@@ -21,9 +21,9 @@ const Student = new Schema(
 
 // Add plugin
 mongoose.plugin(slug);
-// Product.plugin(mongooseDelete, {
-//   overrideMethods: true ,
-//   deletedAt : true,
-// })
+Student.plugin(mongooseDelete, {
+  overrideMethods: true ,
+  deletedAt : true,
+})
 
 module.exports = mongoose.model("Student", Student);
