@@ -1,4 +1,5 @@
 const PaymentList = require("../models/PaymentModel");
+const StudentList = require("../models/StudentModel");
 
 class paymentController {
   // 1. [GET] /getPayment
@@ -21,8 +22,43 @@ class paymentController {
       })
       .catch(next);
   }
+  // 2. [GET] /getPaymentbyStudent
+  async getPaymentByStudent(req, res, next) {
+    // handle param
+    let modelParam = {
+      idStudent: req.query?.idStudent || null,
+      password: req.query?.password || null,
+    };
+    for (var key in modelParam) {
+      if (!modelParam[key]) {
+        delete modelParam[key];
+      }
+    }
+    // End handle param
 
-  // 2. [put] /updatePayment
+    // Validation
+    // 1.
+    const userList = await StudentList.find({
+      idStudent: modelParam?.idStudent,
+    });
+    if (userList.length === 0) {
+      return res.status(401).send("Tên đăng nhập không tồn tại.");
+    }
+    // 2.
+    if (userList[0].passwordCheckInfo !== modelParam?.password) {
+      return res.status(401).send("Sai Mật khẩu");
+    }
+    // ---End Validation
+    PaymentList.find({
+      idStudent: modelParam?.idStudent,
+    })
+      .then((paymentItem) => {
+        res.json({ paymentItem });
+      })
+      .catch(next);
+  }
+
+  // 3. [put] /updatePayment
   async updatePayment(req, res, next) {
     try {
       // Check model payment
@@ -108,7 +144,10 @@ class paymentController {
         }
       }
       // save new data
-      await PaymentList.findOneAndUpdate({idStudent:req.params.id}, updatePaymentModel);
+      await PaymentList.findOneAndUpdate(
+        { idStudent: req.params.id },
+        updatePaymentModel
+      );
       console.log("update data success");
       res.json("OK");
     } catch (error) {
