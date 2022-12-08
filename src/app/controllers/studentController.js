@@ -111,7 +111,11 @@ class StudentController {
       await student.save();
       await paymentNew.save();
       // End handle
-      res.json("Save data success");
+      res.json({
+        message: "Save data success",
+        id: newStudentModel.idStudent,
+        passWord: newStudentModel.passwordCheckInfo,
+      });
     } catch (error) {
       console.log(error);
       res.status(400).send("Bad Request");
