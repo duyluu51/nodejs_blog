@@ -69,9 +69,7 @@ II. Student (/student/...)
 
 III. Course (/course/...)
     1. Get: /course/getCourse:
-        headers {
-                    x_authorization:accessToken(string),
-                }
+        
         query {
             shiftCode
             nameShift

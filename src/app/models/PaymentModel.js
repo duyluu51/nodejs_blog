@@ -4,10 +4,10 @@ const mongooseDelete = require("mongoose-delete");
 
 const Schema = mongoose.Schema;
 
-const MonthPayment=new Schema(
+const MonthPayment = new Schema(
   {
-    cashAmount: { type: Number},
-    note:{ type: String}
+    cashAmount: { type: Number },
+    note: { type: String },
   },
   {
     timestamps: true,
@@ -16,9 +16,9 @@ const MonthPayment=new Schema(
 
 const Payment = new Schema(
   {
-    idStudent: { type: String, required: true },
-    shift:{ type: String, required: true },
-    note: { type: String},
+    idStudent: { type: String, required: true, index: true, unique: true },
+    shift: { type: String, required: true },
+    note: { type: String },
     jan: MonthPayment,
     feb: MonthPayment,
     mar: MonthPayment,
@@ -30,7 +30,7 @@ const Payment = new Schema(
     sep: MonthPayment,
     oct: MonthPayment,
     nov: MonthPayment,
-    dec: MonthPayment
+    dec: MonthPayment,
   },
   {
     timestamps: true,
@@ -40,10 +40,8 @@ const Payment = new Schema(
 // Add plugin
 mongoose.plugin(slug);
 Payment.plugin(mongooseDelete, {
-  overrideMethods: true ,
-  deletedAt : true,
-})
-
-
+  overrideMethods: true,
+  deletedAt: true,
+});
 
 module.exports = mongoose.model("Payment", Payment);

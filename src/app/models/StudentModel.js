@@ -6,13 +6,14 @@ const mongooseDelete = require("mongoose-delete");
 
 const Student = new Schema(
   {
-    name: { type: String, required: true },
-    class: { type: String},
-    school: { type: String},
-    phoneNumber: { type: String},
+    idStudent: { type: String, required: true, index: true, unique: true },
+    name: { type: String, required: true, unique: false },
+    class: { type: String },
+    school: { type: String },
+    phoneNumber: { type: String },
     shift: { type: String, required: true },
     year: { type: String, required: true },
-    idStudent: { type: String, required: true },
+    passwordCheckInfo: { type: String, required: true },
   },
   {
     timestamps: true,
@@ -22,8 +23,8 @@ const Student = new Schema(
 // Add plugin
 mongoose.plugin(slug);
 Student.plugin(mongooseDelete, {
-  overrideMethods: true ,
-  deletedAt : true,
-})
+  overrideMethods: true,
+  deletedAt: true,
+});
 
 module.exports = mongoose.model("Student", Student);

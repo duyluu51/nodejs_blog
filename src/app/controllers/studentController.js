@@ -64,10 +64,12 @@ class StudentController {
       // count all total record
       const totalRecordDeletedStudent = await StudentList.countDeleted();
       const totalRecordUnDeleteStudent = await StudentList.count();
-      const totalRecord =totalRecordDeletedStudent+totalRecordUnDeleteStudent
+      const totalRecord =
+        totalRecordDeletedStudent + totalRecordUnDeleteStudent;
       // Check model student
       const newStudentModel = {
         name: req.body?.name || null,
+        passwordCheckInfo: req.body?.passwordCheckInfo || null,
         class: req.body?.class || "",
         school: req.body?.school || "",
         phoneNumber: req.body?.phoneNumber || "",
@@ -78,7 +80,6 @@ class StudentController {
         idStudent: req.body?.year
           ? `${req.body?.year}No${totalRecord + 1}`
           : null,
-        
       };
       // save new data student
       const student = new StudentList(newStudentModel);
@@ -104,12 +105,15 @@ class StudentController {
         nov: monthlyPaymentModel,
         dec: monthlyPaymentModel,
       };
+      console.log(paymentModel);
       const paymentNew = new Payment(paymentModel);
       // Save in database
-      await Promise.all([student.save(), paymentNew.save()]);
+      await student.save();
+      await paymentNew.save();
       // End handle
       res.json("Save data success");
     } catch (error) {
+      console.log(error);
       res.status(400).send("Bad Request");
     }
   }
