@@ -93,7 +93,12 @@ IV Payment (/payment/...)
             idStudent
             shift
         }
-    2. Put: /payment/updatePayment/:idStudent:
+    2. Get: /payment/getPaymentByStudent:
+        query {
+            idStudent
+            password
+        }
+    3. Put: /payment/updatePayment/:idStudent:
         headers {
                     x_authorization:accessToken(string),
                 }
