@@ -24,7 +24,8 @@ class paymentController {
   }
   // 2. [GET] /getPaymentbyStudent
   async getPaymentByStudent(req, res, next) {
-    // handle param
+    try {
+      // handle param
     let modelParam = {
       idStudent: req.query?.idStudent || null,
       password: req.query?.password || null,
@@ -53,9 +54,13 @@ class paymentController {
       idStudent: modelParam?.idStudent,
     })
       .then((paymentItem) => {
-        res.json({ paymentItem });
+        let monthItem=paymentItem[0]
+        res.json({ monthItem });
       })
       .catch(next);
+    }catch(error){
+      res.status(400).send("Bad Request");
+    }
   }
 
   // 3. [put] /updatePayment
