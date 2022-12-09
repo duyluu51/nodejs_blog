@@ -1,4 +1,5 @@
 const StudentList = require("../models/StudentModel");
+const CourseList = require("../models/CourseModel");
 const Payment = require("../models/PaymentModel");
 
 // const {mongooseToObject} = require('../../util/mongoose')
@@ -92,21 +93,47 @@ class StudentController {
       const paymentModel = {
         idStudent: newStudentModel.idStudent,
         shift: newStudentModel.shift,
-        jan: monthlyPaymentModel,
-        feb: monthlyPaymentModel,
-        mar: monthlyPaymentModel,
-        apr: monthlyPaymentModel,
-        may: monthlyPaymentModel,
-        jun: monthlyPaymentModel,
-        jul: monthlyPaymentModel,
-        aug: monthlyPaymentModel,
-        sep: monthlyPaymentModel,
-        oct: monthlyPaymentModel,
-        nov: monthlyPaymentModel,
-        dec: monthlyPaymentModel,
+        year: req.body?.year
+          ? `${req.body?.year}-${+req.body?.year + 1}`
+          : null,
       };
-      console.log(paymentModel);
-      const paymentNew = new Payment(paymentModel);
+      // Define Time content
+      const timeContentModal={
+        jan1: monthlyPaymentModel,
+        feb1: monthlyPaymentModel,
+        mar1: monthlyPaymentModel,
+        apr1: monthlyPaymentModel,
+        may1: monthlyPaymentModel,
+        jun1: monthlyPaymentModel,
+        jul1: monthlyPaymentModel,
+        aug1: monthlyPaymentModel,
+        sep1: monthlyPaymentModel,
+        oct1: monthlyPaymentModel,
+        nov1: monthlyPaymentModel,
+        dec1: monthlyPaymentModel,
+        jan2: monthlyPaymentModel,
+        feb2: monthlyPaymentModel,
+        mar2: monthlyPaymentModel,
+        apr2: monthlyPaymentModel,
+        may2: monthlyPaymentModel,
+        jun2: monthlyPaymentModel,
+        jul2: monthlyPaymentModel,
+        aug2: monthlyPaymentModel,
+        sep2: monthlyPaymentModel,
+        oct2: monthlyPaymentModel,
+        nov2: monthlyPaymentModel,
+        dec2: monthlyPaymentModel,
+      }
+      
+      const courseFind= await CourseList.find({shiftCode:req.body?.shift})
+      console.log(courseFind);
+      for (var key in timeContentModal) {
+        if (!courseFind[0].timeContent.includes(key)) {
+          delete timeContentModal[key];
+        }
+      }
+      console.log({...paymentModel,...timeContentModal});
+      const paymentNew = new Payment({...paymentModel,...timeContentModal});
       // Save in database
       await student.save();
       await paymentNew.save();

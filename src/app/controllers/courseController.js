@@ -34,7 +34,10 @@ class CourseController {
       const newCourseModel ={
         shiftCode:`${totalRecordCourse+1}`,
         nameShift:req.body?.nameShift||null,
-        year:req.body?.year||null,
+        timeContent:req.body?.timeContent||null,
+        year:req.body?.year
+        ? `${req.body?.year}-${+req.body?.year + 1}`
+        : null,
       }
         const newCourse = new CourseList(newCourseModel);
       // save new data

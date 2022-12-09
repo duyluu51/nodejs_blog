@@ -65,76 +65,148 @@ class paymentController {
       const updatePaymentModel = {
         shift: req.body?.shift || null,
         note: req.body?.note || null,
-        jan: req.body?.jan
+        jan1: req.body?.jan1
           ? {
-              cashAmount: req.body?.jan?.cashAmount || 0,
-              note: req.body?.jan?.note || "",
+              cashAmount: req.body?.jan1?.cashAmount || 0,
+              note: req.body?.jan1?.note || "",
             }
           : null,
-        feb: req.body?.feb
+        feb1: req.body?.feb1
           ? {
-              cashAmount: req.body?.feb?.cashAmount || 0,
-              note: req.body?.feb?.note || "",
+              cashAmount: req.body?.feb1?.cashAmount || 0,
+              note: req.body?.feb1?.note || "",
             }
           : null,
-        mar: req.body?.mar
+        mar1: req.body?.mar1
           ? {
-              cashAmount: req.body?.mar?.cashAmount || 0,
-              note: req.body?.mar?.note || "",
+              cashAmount: req.body?.mar1?.cashAmount || 0,
+              note: req.body?.mar1?.note || "",
             }
           : null,
-        apr: req.body?.apr
+        apr1: req.body?.apr1
           ? {
-              cashAmount: req.body?.apr?.cashAmount || 0,
-              note: req.body?.apr?.note || "",
+              cashAmount: req.body?.apr1?.cashAmount || 0,
+              note: req.body?.apr1?.note || "",
             }
           : null,
-        may: req.body?.may
+        may1: req.body?.may1
           ? {
-              cashAmount: req.body?.may?.cashAmount || 0,
-              note: req.body?.may?.note || "",
+              cashAmount: req.body?.may1?.cashAmount || 0,
+              note: req.body?.may1?.note || "",
             }
           : null,
-        jun: req.body?.jun
+        jun1: req.body?.jun1
           ? {
-              cashAmount: req.body?.jun?.cashAmount || 0,
-              note: req.body?.jun?.note || "",
+              cashAmount: req.body?.jun1?.cashAmount || 0,
+              note: req.body?.jun1?.note || "",
             }
           : null,
-        jul: req.body?.jul
+        jul1: req.body?.jul1
           ? {
-              cashAmount: req.body?.jul?.cashAmount || 0,
-              note: req.body?.jul?.note || "",
+              cashAmount: req.body?.jul1?.cashAmount || 0,
+              note: req.body?.jul1?.note || "",
             }
           : null,
-        aug: req.body?.aug
+        aug1: req.body?.aug1
           ? {
-              cashAmount: req.body?.aug?.cashAmount || 0,
-              note: req.body?.aug?.note || "",
+              cashAmount: req.body?.aug1?.cashAmount || 0,
+              note: req.body?.aug1?.note || "",
             }
           : null,
-        sep: req.body?.sep
+        sep1: req.body?.sep1
           ? {
-              cashAmount: req.body?.sep?.cashAmount || 0,
-              note: req.body?.sep?.note || "",
+              cashAmount: req.body?.sep1?.cashAmount || 0,
+              note: req.body?.sep1?.note || "",
             }
           : null,
-        oct: req.body?.oct
+        oct1: req.body?.oct1
           ? {
-              cashAmount: req.body?.oct?.cashAmount || 0,
-              note: req.body?.oct?.note || "",
+              cashAmount: req.body?.oct1?.cashAmount || 0,
+              note: req.body?.oct1?.note || "",
             }
           : null,
-        nov: req.body?.nov
+        nov1: req.body?.nov1
           ? {
-              cashAmount: req.body?.nov?.cashAmount || 0,
-              note: req.body?.nov?.note || "",
+              cashAmount: req.body?.nov1?.cashAmount || 0,
+              note: req.body?.nov1?.note || "",
             }
           : null,
-        dec: req.body?.dec
+        dec1: req.body?.dec1
           ? {
-              cashAmount: req.body?.dec?.cashAmount || 0,
-              note: req.body?.dec?.note || "",
+              cashAmount: req.body?.dec1?.cashAmount || 0,
+              note: req.body?.dec1?.note || "",
+            }
+          : null,
+        jan2: req.body?.jan2
+          ? {
+              cashAmount: req.body?.jan2?.cashAmount || 0,
+              note: req.body?.jan2?.note || "",
+            }
+          : null,
+        feb2: req.body?.feb2
+          ? {
+              cashAmount: req.body?.feb2?.cashAmount || 0,
+              note: req.body?.feb2?.note || "",
+            }
+          : null,
+        mar2: req.body?.mar2
+          ? {
+              cashAmount: req.body?.mar2?.cashAmount || 0,
+              note: req.body?.mar2?.note || "",
+            }
+          : null,
+        apr2: req.body?.apr2
+          ? {
+              cashAmount: req.body?.apr2?.cashAmount || 0,
+              note: req.body?.apr2?.note || "",
+            }
+          : null,
+        may2: req.body?.may2
+          ? {
+              cashAmount: req.body?.may2?.cashAmount || 0,
+              note: req.body?.may2?.note || "",
+            }
+          : null,
+        jun2: req.body?.jun2
+          ? {
+              cashAmount: req.body?.jun2?.cashAmount || 0,
+              note: req.body?.jun2?.note || "",
+            }
+          : null,
+        jul2: req.body?.jul2
+          ? {
+              cashAmount: req.body?.jul2?.cashAmount || 0,
+              note: req.body?.jul2?.note || "",
+            }
+          : null,
+        aug2: req.body?.aug2
+          ? {
+              cashAmount: req.body?.aug2?.cashAmount || 0,
+              note: req.body?.aug2?.note || "",
+            }
+          : null,
+        sep2: req.body?.sep2
+          ? {
+              cashAmount: req.body?.sep2?.cashAmount || 0,
+              note: req.body?.sep2?.note || "",
+            }
+          : null,
+        oct2: req.body?.oct2
+          ? {
+              cashAmount: req.body?.oct2?.cashAmount || 0,
+              note: req.body?.oct2?.note || "",
+            }
+          : null,
+        nov2: req.body?.nov2
+          ? {
+              cashAmount: req.body?.nov2?.cashAmount || 0,
+              note: req.body?.nov2?.note || "",
+            }
+          : null,
+        dec2: req.body?.dec2
+          ? {
+              cashAmount: req.body?.dec2?.cashAmount || 0,
+              note: req.body?.dec2?.note || "",
             }
           : null,
       };

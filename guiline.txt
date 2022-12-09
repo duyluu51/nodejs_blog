@@ -82,6 +82,7 @@ III. Course (/course/...)
             Body {
                 nameShift
                 year
+                timeContent:[...list of month]
             }
 
 IV Payment (/payment/...)
