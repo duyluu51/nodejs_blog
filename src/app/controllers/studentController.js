@@ -166,10 +166,9 @@ class StudentController {
           delete updateStudentModel[key];
         }
       }
-
       // save new data
       const responseUpdateStudent = await StudentList.findOneAndUpdate(
-        { _id: req.params.id },
+        { idStudent: req.params.id },
         updateStudentModel
       );
       // if having update shift ==> update in table payment

@@ -61,6 +61,7 @@ II. Student (/student/...)
             class
             school
             phoneNumber
+            passwordCheckInfo
         }
     5. delete: /student/delete/:id:
         headers {
