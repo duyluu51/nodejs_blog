@@ -98,7 +98,7 @@ class StudentController {
           : null,
       };
       // Define Time content
-      const timeContentModal={
+      const timeContentModal = {
         jan1: monthlyPaymentModel,
         feb1: monthlyPaymentModel,
         mar1: monthlyPaymentModel,
@@ -123,17 +123,17 @@ class StudentController {
         oct2: monthlyPaymentModel,
         nov2: monthlyPaymentModel,
         dec2: monthlyPaymentModel,
-      }
-      
-      const courseFind= await CourseList.find({shiftCode:req.body?.shift})
+      };
+
+      const courseFind = await CourseList.find({ shiftCode: req.body?.shift });
       console.log(courseFind);
       for (var key in timeContentModal) {
         if (!courseFind[0].timeContent.includes(key)) {
           delete timeContentModal[key];
         }
       }
-      console.log({...paymentModel,...timeContentModal});
-      const paymentNew = new Payment({...paymentModel,...timeContentModal});
+      console.log({ ...paymentModel, ...timeContentModal });
+      const paymentNew = new Payment({ ...paymentModel, ...timeContentModal });
       // Save in database
       await student.save();
       await paymentNew.save();
@@ -159,6 +159,7 @@ class StudentController {
         school: req.body?.school || null,
         phoneNumber: req.body?.phoneNumber || null,
         shift: req.body?.shift || null,
+        passwordCheckInfo: req.body?.passwordCheckInfo || null,
       };
       for (var key in updateStudentModel) {
         if (!updateStudentModel[key]) {
