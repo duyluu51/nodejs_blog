@@ -34,7 +34,7 @@ class CourseController {
         shiftCode: `${totalRecordCourse + 1}`,
         nameShift: req.body?.nameShift || null,
         timeContent: req.body?.timeContent || null,
-        yearCode: req.body?.yearCode || null,
+        yearCode: req.body?.year || null,
         year: req.body?.year
           ? `${req.body?.year}-${+req.body?.year + 1}`
           : null,
