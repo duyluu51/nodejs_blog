@@ -27,12 +27,12 @@ var corsOptions = {
   origin: function (origin, callback) {
     const isUnBlock = whitelist.some((item) => `${origin}`.includes(item));
     // !!! will set up when deploy
-    // if (isUnBlock) {
-    //   callback(null, true);
-    // } else {
-    //   callback(new Error("Not allowed by CORS"));
-    // }
-    callback(null, true);
+    if (isUnBlock) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+    // callback(null, true);
   },
 };
 

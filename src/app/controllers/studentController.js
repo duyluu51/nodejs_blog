@@ -62,11 +62,9 @@ class StudentController {
   // 3. [post] /create
   async create(req, res, next) {
     try {
-      // count all total record
-      const totalRecordDeletedStudent = await StudentList.countDeleted();
-      const totalRecordUnDeleteStudent = await StudentList.count();
-      const totalRecord =
-        totalRecordDeletedStudent + totalRecordUnDeleteStudent;
+      // count all total record include delete and not delete
+      const totalRecord = await StudentList.countDeleted();
+
       // Check model student
       const newStudentModel = {
         name: req.body?.name || null,
@@ -126,13 +124,12 @@ class StudentController {
       };
 
       const courseFind = await CourseList.find({ shiftCode: req.body?.shift });
-      console.log(courseFind);
+
       for (var key in timeContentModal) {
         if (!courseFind[0].timeContent.includes(key)) {
           delete timeContentModal[key];
         }
       }
-      console.log({ ...paymentModel, ...timeContentModal });
       const paymentNew = new Payment({ ...paymentModel, ...timeContentModal });
       // Save in database
       await student.save();
@@ -144,7 +141,6 @@ class StudentController {
         passWord: newStudentModel.passwordCheckInfo,
       });
     } catch (error) {
-      console.log(error);
       res.status(400).send("Bad Request");
     }
   }
