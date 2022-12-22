@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 // config dotenv to read process.env
 dotenv.config();
@@ -22,16 +22,17 @@ app.use(
 );
 
 // config cors
-var whitelist = ["http://localhost:3000/", "http://localhost:5000/"];
+var whitelist = ["localhost", "railway", "vercel"];
 var corsOptions = {
   origin: function (origin, callback) {
+    const isUnBlock = whitelist.some((item) => `${origin}`.includes(item));
     // !!! will set up when deploy
-    // if (whitelist.indexOf(origin) !== -1) {
-    //   callback(null, true);
-    // } else {
-    //   callback(new Error("Not allowed by CORS"));
-    // }
-    callback(null, true);
+    if (isUnBlock) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+    // callback(null, true);
   },
 };
 
